@@ -12,15 +12,12 @@ function login(){
         name,password,email,roleId
       }
       console.log(info)
-      
-      
-                 fetch("http://localhost:8080/users/login", {
+                 fetch("https://spring-mvc-apps.herokuapp.com//users/login", {
                   method: "post",
                   headers: {
                       'Accept': 'application/json',
                       'Content-Type': 'application/json'
                   },
-
                   //make sure to serialize your JSON body
                   body: JSON.stringify(info)
               }) .then(response => response.json())
@@ -77,7 +74,7 @@ function registerUser(){
       }
       console.log(info2)
       
-                 fetch("http://localhost:8080/users/create", {
+                 fetch("https://spring-mvc-apps.herokuapp.com/users/create", {
                   method: "post",
                   headers: {
                       'Accept': 'application/json',
@@ -129,7 +126,7 @@ function addEquip() {
             var name = document.getElementById('equipmentName').value;
             
           
-          fetch("http://localhost:8080/equips/read")
+          fetch("https://spring-mvc-apps.herokuapp.com/equips/read")
               .then(response => response.json())
               .then(equips => {
                 
@@ -146,7 +143,7 @@ function addEquip() {
            
             console.log(info)
             
-                 fetch("http://localhost:8080/equips/create", {
+                 fetch("https://spring-mvc-apps.herokuapp.com/equips/create", {
                   method: "post",
                   headers: {
                       'Accept': 'application/json',
@@ -188,7 +185,7 @@ function addIssue() {
             var month=new Date().getMonth().toString();
             var day=new Date().getDate().toString();
         
-          fetch("http://localhost:8080/issues/read")
+          fetch("https://spring-mvc-apps.herokuapp.com/issues/read")
               .then(response => response.json())
               .then(issues => {
                  var issuesId=0;
@@ -201,7 +198,7 @@ function addIssue() {
             }
            
             console.log(info)
-                   fetch("http://localhost:8080/issues/create", {
+                   fetch("https://spring-mvc-apps.herokuapp.com/issues/create", {
                   method: "post",
                   headers: {
                       'Accept': 'application/json',
@@ -215,34 +212,24 @@ function addIssue() {
                       window.alert (response[0]);
                       var rows=""
                         rows += "<tr><td>" + info.id + "</td><td>" + "name loading..." + "</td><td>" + info.description + "</td><td>" + info.location + "</td><td>" + info.status + "</td><td>" + info.date + "</td></tr>";
-                  
-            
-                
                 $(rows).appendTo("#issueList tbody");
               
                   });
                  
                     })
-
-
-
-           
 }
 function cancelIssuePost(){
   
             console.log("reset form")
-
 }
- function  getEquips(){  
-   
-             
+ function  getEquips(){ 
        var logout = document.getElementById('logout')
       var user =JSON.parse(localStorage.getItem("user"));
             
             if(user === null){
                 logout.className="d-none"
             }
-      fetch("http://localhost:8080/equips/read")
+      fetch("https://spring-mvc-apps.herokuapp.com/equips/read")
         .then(response => response.json())
         .then(data => {
 
@@ -268,11 +255,11 @@ function cancelIssuePost(){
 
             var equipment=[];
             
-             fetch("http://localhost:8080/equips/read")
+             fetch("https://spring-mvc-apps.herokuapp.com/equips/read")
           .then(response => response.json())
           .then(data => {
               equipment=data;
-              fetch("http://localhost:8080/issues/read")
+              fetch("https://spring-mvc-apps.herokuapp.com/issues/read")
               .then(response => response.json())
               .then(issues => {
 
@@ -332,7 +319,7 @@ function deleteIssue(e){
            
             console.log(info)
             
-                 fetch("http://localhost:8080/issues/delete", {
+                 fetch("https://spring-mvc-apps.herokuapp.com/issues/delete", {
                   method: "delete",
                   headers: {
                       'Accept': 'application/json',
@@ -367,7 +354,7 @@ function updateIssue(){
                    window.alert("Only Supervisor can provide feedback.Please log in as superviser")
                  }
                  else{
-                   fetch("http://localhost:8080/issues/update", {
+                   fetch("https://spring-mvc-apps.herokuapp.com/issues/update", {
                   method: "put",
                   headers: {
                       'Accept': 'application/json',
